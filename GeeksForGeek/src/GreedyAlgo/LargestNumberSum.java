@@ -23,7 +23,7 @@ public class LargestNumberSum {
 				
 				int diff=sum-t;
 				if(diff==0) {
-					num=num*10+0;
+					num=num*10;
 				}
 				else if(diff<9)
 				{

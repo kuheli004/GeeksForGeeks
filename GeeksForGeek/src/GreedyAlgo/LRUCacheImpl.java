@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class LRUCacheImpl {
 
 	public static void main(String[] args) {
-int pages[] = {7, 0, 1, 2, 0, 3, 4};
+int pages[] = {5 ,0, 1, 3, 2, 4, 1, 0, 5};
         
         int capacity = 4;
          

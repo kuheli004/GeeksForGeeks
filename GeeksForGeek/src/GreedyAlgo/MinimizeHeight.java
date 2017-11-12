@@ -2,10 +2,10 @@ package GreedyAlgo;
 
 import java.util.Arrays;
 
-public class MinimizeMaxDiff {
+public class MinimizeHeight {
 
 	public static void main(String[] args) {
-		int arr[]= {1, 10, 14, 14, 14, 15};
+		int arr[]= {1, 10, 15};
 		int n=arr.length;
 		int k=6;
 		System.out.println(getMinDiff(arr,n,k));

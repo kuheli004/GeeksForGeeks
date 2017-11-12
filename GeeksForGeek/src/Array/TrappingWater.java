@@ -3,7 +3,7 @@ package Array;
 public class TrappingWater {
 
 	public static void main(String[] args) {
-	int arr[]={3,0,0,2,0,2};
+	int arr[]={3,0,4,0,4};
 	int n=arr.length;
 		System.out.println(findWater(arr,n));
 
