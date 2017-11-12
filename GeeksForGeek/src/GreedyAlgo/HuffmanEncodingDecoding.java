@@ -35,7 +35,7 @@ import java.util.Comparator;
 
 
 
-public  class HuffmanEncoding {
+public  class HuffmanEncodingDecoding {
 
     
     public void huffmanCode(PriorityQueue<HuffmanTree> q)
@@ -84,7 +84,7 @@ public  class HuffmanEncoding {
     
     public static void main(String[] args) {
         
-    	HuffmanEncoding hh = new HuffmanEncoding();
+    	HuffmanEncodingDecoding hh = new HuffmanEncodingDecoding();
         Comparator<HuffmanTree> cmp = new Comparator<HuffmanTree>()
         {
             @Override 
