@@ -1,9 +1,13 @@
 package String;
 
+import java.util.Scanner;
+
 public class StringPermutation {
 
 	public static void main(String[] args) {
-		Permutation("ABSG");
+		Scanner sc=new Scanner(System.in);
+		String str=sc.next();
+		Permutation(str);
 		
 	}
 

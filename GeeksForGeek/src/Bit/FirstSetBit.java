@@ -3,7 +3,7 @@ package Bit;
 public class FirstSetBit {
 
 	public static void main(String[] args) {
-		int n=18;
+		int n=4;
 		System.out.println((int)getFirstRightBitSetLog(n)+1);
 		System.out.println((int)getFirstRightBitSet(n));
 

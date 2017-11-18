@@ -3,7 +3,7 @@ package DivCon;
 public class FindElementAppearOnce {
 
 	public static void main(String[] args) {
-		int arr[]= {1, 1, 3, 3, 4, 4, 5, 5, 7, 7, 8};
+		int arr[]= {0,1,3,3,4,4};
 		Search(arr,0,arr.length-1);
 	}
 

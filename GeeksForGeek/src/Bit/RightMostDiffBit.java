@@ -3,7 +3,7 @@ package Bit;
 public class RightMostDiffBit {
 
 	public static void main(String[] args) {
-		int m=11,n=9;
+		int m=52,n=4;
 		System.out.println((int)getRightMostDiffBit(m^n)+1);
 
 	}
