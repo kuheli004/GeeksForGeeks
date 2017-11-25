@@ -49,7 +49,7 @@ public class LinkedList {
 	//	RemoveDupFromSortedList(li.head);
 
 		printList(head);
-		RemoveDupFromUnSortedList(head);
+		//RemoveDupFromUnSortedList(head);
 	//	DeleteElementSumEqualToZero(li.head);
 		//ReverseLinkedList(li.head);
 		//head=addOne(head);
@@ -57,6 +57,7 @@ public class LinkedList {
 	//	head=reverseInGroup(head,3);
 		//System.out.println("Loop is there::::"+isLoop(head));
 		//RemoveLoop(head);
+		
 		printList(head);
 		
 	}
