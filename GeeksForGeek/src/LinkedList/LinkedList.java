@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 public class LinkedList {
@@ -19,24 +21,24 @@ public class LinkedList {
 	
 		LinkedList li=new LinkedList();
 		Node first=new Node(1);
-		Node two=new Node(9);
-		Node three=new Node(9);
-		Node four=new Node(9);
-		Node five=new Node(9);
-		Node six=new Node(6);
-		Node seven=new Node(-19);
+		Node two=new Node(2);
+		Node three=new Node(3);
+		Node four=new Node(4);
+		Node five=new Node(1);
+		Node six=new Node(2);
+		Node seven=new Node(3);
 		Node eight=new Node(10);
 		Node nine=new Node(-18);
 		Node ten=new Node(20);
 		Node ele=new Node(25);
-		//head=first;
-		head=two;
-		head.next=three;
+		head=first;
+		head.next=two;
+		head.next.next=three;
 		three.next=four;
 		four.next=five;
-	/*	five.next=six;
+		five.next=six;
 		six.next=seven;
-		seven.next=eight;
+		/*seven.next=eight;
 		eight.next=nine;
 		nine.next=ten;
 		ten.next=ele;*/
@@ -45,11 +47,101 @@ public class LinkedList {
 	//	findMiddle(li.head);
 	//	DeleteMid(li.head);
 	//	RemoveDupFromSortedList(li.head);
+
+		printList(head);
+		RemoveDupFromUnSortedList(head);
 	//	DeleteElementSumEqualToZero(li.head);
 		//ReverseLinkedList(li.head);
 		//head=addOne(head);
-		head=recursiveAddOne(head);
+		//head=recursiveAddOne(head);
+	//	head=reverseInGroup(head,3);
+		//System.out.println("Loop is there::::"+isLoop(head));
+		//RemoveLoop(head);
 		printList(head);
+		
+	}
+
+
+
+	private static void RemoveDupFromUnSortedList(Node head) {
+		Set<Integer> hs=new HashSet<Integer>();
+		Node temp=head;
+		Node prev=null;
+		while(temp!=null) {
+			if(!hs.contains(temp.data)) {
+				hs.add(temp.data);
+				prev=temp;
+			}
+			else
+			{
+				prev.next=temp.next;
+			}
+			temp=temp.next;
+		}
+		
+		
+	}
+
+
+
+	private static void RemoveLoop(Node head) {
+		Node slow=head;
+		Node fast=head;
+		boolean flag=false;
+		while(slow!=null && fast!=null && fast.next!=null) {
+				slow=slow.next;
+				fast=fast.next.next;
+				if(fast==slow) {
+					flag=true;
+					break;
+					}
+				}
+			
+		if(flag) {
+			slow=head;
+			while(slow.next!=fast.next) {
+				slow=slow.next;
+				fast=fast.next;
+		}
+			fast.next=null;
+		}
+	}
+	
+		
+
+
+
+	private static boolean isLoop(Node head) {
+		Node slow=head;
+		Node fast=head;
+		while(slow!=null && fast!=null && fast.next!=null) {
+				slow=slow.next;
+				fast=fast.next.next;
+				if(fast==slow)
+				return true;
+		}
+		
+		return false;
+	}
+
+
+
+	private static Node reverseInGroup(Node head, int k) {
+		Node prev=null;
+		Node curr=head;
+		Node next=null;
+		int count=1;
+		while(curr!=null && count<=k) {
+			next=curr.next;
+			curr.next=prev;
+			prev=curr;
+			curr=next;
+			count++;
+		}
+		if(next!=null)
+		head.next=reverseInGroup(next,k);
+	//	printList(prev);
+		return prev;
 		
 	}
 
@@ -229,6 +321,7 @@ public class LinkedList {
 
 
 	private static void printList(Node head) {
+		System.out.println();
 		if(head==null|| head.next==null)
 			System.out.println(head.data);
 		else {
