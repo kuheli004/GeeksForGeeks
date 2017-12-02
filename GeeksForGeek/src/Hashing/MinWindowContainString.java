@@ -1,75 +1,94 @@
 package Hashing;
 
-import java.util.Arrays;
-import java.util.HashMap;
-
-public class MinWindowContainString {
-
-	  static final int no_of_chars = 26;
+public class MinWindowContainString
+	{
+	    static final int no_of_chars = 256;
 	     
-	  public static String minWindow(String S1 , String T1){
-		    int sLen = S1.length();
-		    int tLen = T1.length();
-		    
-		    char[] S = S1.toCharArray();
-		    char[] T = T1.toCharArray();
-		    
-		    int minWinLen= sLen;
-		    
-		    int[] need = new int[26];
-		    Arrays.fill(need , 0);
-		    
-		    for(int i=0; i<tLen ; i++)
-		        need[T[i]-'a']++;
-		        
-		    int[] has = new int[26];
-		    
-		    int end=0;
-		    int count = 0;
-		    
-		    int x = 0 , y = 0;
-		    
-		    for(int begin=0 ; end < sLen ; end++)
-		    {
-		        if(need[S[end]-'a'] == 0) continue;
-		        
-		        has[S[end]-'a']++;
-		        
-		        if(has[S[end]-'a'] <= need[S[end]-'a'] )
-		            count++;
-		        
-		        if(count == tLen)
-		        {
-		            while( need[S[begin]-'a'] == 0 || has[S[begin]-'a'] > need[S[begin]-'a'] )
-		            {
-		                if (has[S[begin]-'a'] > need[S[begin]-'a'])
-		                    has[S[begin]-'a']--;
-		                
-		                begin++;
-		            }
-		            
-		            int winLen = end - begin + 1;
-
-		            if(winLen<minWinLen)
-		            {
-		                minWinLen = winLen;
-		                x = begin;
-		                y = end;
-		                
-		            }
-		                
-		        }
-		    }
-		    return S1.substring(x,y+1);
-		}
+	    // Function to find smallest window containing
+	    // all characters of 'pat'
+	    static String findSubString(String str, String pat)
+	    {
+	        int len1 = str.length();
+	        int len2 = pat.length();
+	      
+	        // check if string's length is less than pattern's
+	        // length. If yes then no such window can exist
+	        if (len1 < len2)
+	        {
+	            System.out.println("No such window exists");
+	            return "";
+	        }
+	      
+	        int hash_pat[] = new int[no_of_chars];
+	        int hash_str[] = new int[no_of_chars];
+	      
+	        // store occurrence ofs characters of pattern
+	        for (int i = 0; i < len2; i++)
+	            hash_pat[pat.charAt(i)]++;
+	      
+	        int start = 0, start_index = -1, min_len = Integer.MAX_VALUE;
+	      
+	        // start traversing the string
+	        int count = 0;  // count of characters
+	        for (int j = 0; j < len1 ; j++)
+	        {
+	            // count occurrence of characters of string
+	            hash_str[str.charAt(j)]++;
+	      
+	            // If string's char matches with pattern's char
+	            // then increment count
+	            if (hash_pat[str.charAt(j)] != 0 &&
+	                hash_str[str.charAt(j)] <= hash_pat[str.charAt(j)] )
+	                count++;
+	      
+	            // if all the characters are matched
+	            if (count == len2)
+	            {
+	                // Try to minimize the window i.e., check if
+	                // any character is occurring more no. of times
+	                // than its occurrence  in pattern, if yes
+	                // then remove it from starting and also remove
+	                // the useless characters.
+	                while ( hash_str[str.charAt(start)] > hash_pat[str.charAt(start)]
+	                       || hash_pat[str.charAt(start)] == 0)
+	                {
+	      
+	                    if (hash_str[str.charAt(start)] > hash_pat[str.charAt(start)])
+	                        hash_str[str.charAt(start)]--;
+	                    start++;
+	                }
+	      
+	                // update window size
+	                int len_window = j - start + 1;
+	                if (min_len > len_window)
+	                {
+	                    min_len = len_window;
+	                    start_index = start;
+	                }
+	            }
+	        }
+	      
+	        // If no window found
+	        if (start_index == -1)
+	        {
+	           System.out.println("No such window exists");
+	           return "";
+	        }
+	      
+	        // Return substring starting from start_index
+	        // and length min_len
+	        return str.substring(start_index, start_index + min_len);
+	    }
+	     
 	    // Driver Method
 	    public static void main(String[] args)
 	    {
-	        String str = "zoomlazapzo";
-	        String pat = "oza";
+	        String str = "this is a test string";
+	        String pat = "tist";
 	      
-	       System.out.print("Smallest window is :  n" +
-	    		   minWindow(str, pat));
+	       System.out.print("Smallest window is :  " +
+	                        findSubString(str, pat));
 	    }
+	
 
 }

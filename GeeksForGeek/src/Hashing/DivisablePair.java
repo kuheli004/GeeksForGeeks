@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class DivisablePair {
 	static HashMap<Integer,Integer> hm=new HashMap<Integer,Integer>();
 	public static void main(String[] args) {	
-		  int arr[] = { 92, 75, 65, 48, 45, 35 };
+		  int arr[] = { 91, 74, 66, 48 };
  	        int k = 10;
 	        boolean ans = canPairs(arr, k);
 	        if (ans)

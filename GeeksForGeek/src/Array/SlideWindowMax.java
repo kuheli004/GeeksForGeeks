@@ -8,7 +8,7 @@ public class SlideWindowMax {
 
 	public static void main(String[] args) {
 	int arr[]={12, 1, 78, 90, 57, 89, 56};
-	int k=3;
+	int k=3;	
 	int i=0,n=arr.length;
 		Deque<Integer> q=new LinkedList();
 		

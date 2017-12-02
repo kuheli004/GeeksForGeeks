@@ -1,10 +1,10 @@
-package Hashing;
+ package Hashing;
 
 
 public class EqualFrequency {
 
 	public static void main(String[] args) {
-		String str= "aaabccc";
+		String str= "aabbccccc";
 		System.out.println(possibleSameCharFreqByOneRemoval(str));
 
 	}

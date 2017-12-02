@@ -9,25 +9,28 @@ public class FirstElementKTimes {
 	public static void main(String[] args) {	
 	    int arr[] = {1, 7, 4, 3, 4, 8, 7};
 	    int k=2;
+	    int index=firstElement(arr,k);
         System.out.println("firstElement:: "
-                           + firstElement(arr,k));
+                           + arr[index]);
 	}
 
 	private static int firstElement(int[] arr, int k) {
 	
-		ArrayList<Integer> found = new ArrayList<>();
+		int min=Integer.MAX_VALUE;
 
 		Map<Integer,Integer> map = new HashMap<>();
+		Map<Integer,Integer> map2 = new HashMap<>();
 		for (int i = 0; i < arr.length; i++) {
 		if(map.get(arr[i]) == null){
 		map.put(arr[i],1);
+		map2.put(arr[i], i);
 		}
 		else{
 
 		int tmp = map.get(arr[i])+1;
 		if(tmp == k){
 
-		found.add(arr[i]);
+		min=Math.min(min, map2.get(arr[i]));
 
 		}
 
@@ -36,6 +39,7 @@ public class FirstElementKTimes {
 		}
 		}
 
-		return found.get(1);
+		return min;
+		
 		}
 	}
