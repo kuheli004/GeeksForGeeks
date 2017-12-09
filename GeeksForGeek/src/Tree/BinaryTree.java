@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+
+
 public class BinaryTree {
 	Node root;
 	Leaf myLevel=new Leaf();
+	  static Node next = null;
 	BinaryTree(int key){
 		root=new Node(key);
 	}
@@ -75,7 +78,7 @@ public class BinaryTree {
 				System.out.println("Leaves are at same level");
 			else
 				System.out.println("Leaves are not at same level");*/
-		/*tree.toSumTree(tree.root);
+		/*tree.toSumTree(tr	ee.root);
 	     System.out.println("\nInorder traversal of binary tree is \n");
 	     printInorder(tree.root);  */
 	//	printBoundary(tree.root);
@@ -91,11 +94,69 @@ public class BinaryTree {
 		//PrintSingle(tree.root);
 		//printKDistantfromLeaf(tree.root,1);
 		treePathsSum(tree.root);
+		System.out.println(isBST(tree2.root));
+		System.out.println(serialize(tree.root));
+		populateNext(tree.root);
+		}
+	  static void populateNext(Node node) 
+	    {
+	        // The first visited node will be the rightmost node
+	        // next of the rightmost node will be NULL
+	        if (node != null) 
+	        {
+	            // First set the next pointer in right subtree
+	            populateNext(node.right);
+	  
+	            // Set the next as previously visited node in reverse Inorder
+	            node.next = next;
+	  
+	            // Change the prev for subsequent node
+	            next = node;
+	  
+	            // Finally, set the next pointer in left subtree
+	            populateNext(node.left);
+	        }
+	    }
+
+		private static String serialize(Node root) {
+			 if(root==null){
+			        return "";
+			    }
+			 
+			    StringBuilder sb = new StringBuilder();
+			 
+			    LinkedList<Node> queue = new LinkedList<Node>();
+			 
+			    queue.add(root);
+			    while(!queue.isEmpty()){
+			       Node t = queue.poll();
+			        if(t!=null){
+			            sb.append(String.valueOf(t.data) + ",");
+			            queue.add(t.left);
+			            queue.add(t.right);
+			        }else{
+			            sb.append("#,");
+			        }
+			    }
+			 
+			    sb.deleteCharAt(sb.length()-1);
+			    System.out.println(sb.toString());
+			    return sb.toString();
 	}
-	
-	
-	
-	
+		
+		private static boolean isBST(Node root) {
+		return (isBSTUtil(root,Integer.MIN_VALUE,Integer.MAX_VALUE));
+			
+		}
+		private static boolean isBSTUtil(Node root ,int min, int max) {
+			if(root==null)
+				return true;
+			if(root.data<min||root.data>max)
+				return false;
+			
+			return (isBSTUtil(root.left,min,root.data-1)&&(isBSTUtil(root.right,root.data+1,max)));
+				
+		}
 	private static void treePathsSum(Node root) {
 		System.out.print(treePathsSumUtil(root,0));
 	
@@ -423,7 +484,7 @@ public class BinaryTree {
 		return false;
 	}
 	private static boolean hasPathSum(Node root,int sum) {
-		boolean f=false;
+		
 		if(root==null)
 			return (sum==0);
 	/*	if(sum==0 && root.left==null && root.right==null)
@@ -645,6 +706,7 @@ public class BinaryTree {
 
 }
 class Node{
+	Node next;
 	int data;
 	Node left;
 	Node right;
@@ -654,5 +716,6 @@ class Node{
 		this.data=data;
 		left=right=null;
 		nextRight=null;
+		next=null;
 	}
 }
